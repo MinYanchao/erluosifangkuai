@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>简单小例子</title>
+</head>
+<body>
+<input type="text" id="inMessage"><button id="sendMessage">发送</button>
+<div id="showText"></div>
+<script>
+  var liwebsocket = new WebSocket("ws://echo.websocket.org/");
+  
+  liwebsocket.onopen = function () {
+    console.log("websocket is open")
+  //  当打开websocket是，使div的暂未websocket is open
+    document.getElementById("showText").innerHTML = "websocket is open!!!";
+  }
+  //  打开之后先接受一下输入框中的信息 并展示在 div中
+  liwebsocket.onmessage = function (e) {
+    document.getElementById("showText").innerHTML = e.data;
+  }
+//  向websocket发送输入框信息
+  document.getElementById("sendMessage").onclick = function () {
+    //先获取发送的内容
+    var textValue = document.getElementById("inMessage").value;
+    // 发送
+    liwebsocket.send(textValue);
+  }
+//  最后不要忘记关闭
+  liwebsocket.onclose = function () {
+    console.log("websocket is close!!!!");
+  }
+</script>
+</body>
+</html>
