@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>简单的聊天</title>
+  <link rel="stylesheet" href="public.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+</head>
+<body>
+  <div class="page-bgc">
+    <div class="tak-list" id="showText">
+    
+    </div>
+    <div class="send-mess">
+      <input type="text" id="inMessage" class="inputmess"><button id="sendMessage" class="butsend">发送</button>
+    </div>
+  </div>
+
+  <script>
+    var iowebsocket = io("ws://localhost:8002/")
+
+    document.getElementById("sendMessage").onclick = function(){
+      var getmess = document.getElementById("inMessage").value;
+      iowebsocket.emit("message",getmess)
+    }
+    iowebsocket.on("enter",function (data) {
+      console.log(data)
+      showMessage(data,"enter")
+    })
+    iowebsocket.on("message",function (data) {
+      console.log(data)
+      showMessage(data,"message")
+    })
+    iowebsocket.on("disconnect",function (data) {
+      console.log(data)
+      showMessage(data,"disconnect")
+    })
+    
+    function showMessage(data,status){
+      console.log(data)
+      var div = document.createElement("div");
+      if(status == "message"){
+        var usertext = data.split(":");
+        console.log("用户说的话---",usertext)
+        div.innerHTML = "<p>"+usertext[0]+ ":</p><p>" + usertext[1] + "</p>"
+      }else{
+        console.log("是近/是走",data)
+        div.setAttribute("class","cendiv");
+        div.innerHTML =data;
+      }
+      document.getElementById("showText").appendChild(div)
+    }
+    
+  </script>
+</body>
+</html>

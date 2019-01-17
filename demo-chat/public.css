@@ -1,0 +1,55 @@
+.page-bgc{
+    width: 400px;
+    height: 700px;
+    background-image: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1546939559684&di=35e57521be4451bacce15b1a729415b9&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201606%2F26%2F20160626112402_PHLS2.jpeg');
+    background-size: auto;
+    background-repeat: no-repeat;
+    margin: 20px auto;
+    position: relative;
+}
+.tak-list{
+
+}
+.send-mess{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+}
+.inputmess{
+    width: 300px;
+    height: 30px;
+}
+input:focus,button:focus{
+    outline: none;
+}
+.butsend{
+    width: 94px;
+    height: 35px;
+    border:1px solid #5ec4f1;
+    color: #fff;
+    background-color: #5ec4f1;
+}
+.tak-list>div:nth-child(odd){
+    text-align: left;
+}
+.tak-list>div:nth-child(even){
+    text-align: right;
+}
+.tak-list>div.cendiv{
+    text-align: center;
+    margin: 5px auto;
+    width: 125px;
+    color: #ccc;
+    background-color: #eee;
+}
+
+.tak-list>div>p:nth-child(1){
+    color: #999;
+}
+.tak-list>div>p:nth-child(2){
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #5ec4f1;
+    display: inline;
+    color: #fff;
+}
